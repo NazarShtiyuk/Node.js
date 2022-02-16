@@ -1,0 +1,16 @@
+NAME: Andriy
+AGE: 20
+CITY: Lviv
+
+NAME: Petya
+AGE: 20
+CITY: Lviv
+
+NAME: Vasya
+AGE: 20
+CITY: Lviv
+
+NAME: Nazar
+AGE: 20
+CITY: Lviv
+
