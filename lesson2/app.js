@@ -58,7 +58,7 @@ app.get('/users', ({query}, res) => {
     const {age, city} = query;
     // console.log(req.query);
     if (Object.keys(query) !== 0) {
-        let filteredUsers = [...users];
+        let filteredUsers = users;
         if (city) {
             filteredUsers = filteredUsers.filter(user => user.city === city);
         }
