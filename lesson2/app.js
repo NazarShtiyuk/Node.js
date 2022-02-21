@@ -76,11 +76,11 @@ app.get('/users', ({query}, res) => {
 })
 
 app.get('/users/:userId', (req, res) => {
-    // console.log(req.params)
-    for (let i = 0; i < users.length; i++) {
+    console.log(req.params)
+    for (let i = 1; i <= users.length; i++) {
 
-        if ((i + 1) === +req.params.userId) {
-            res.render('user', {user: users[i + 1]});
+        if ((i) === +req.params.userId) {
+            res.render('user', {user: users[i - 1]});
         }
 
     }
@@ -119,10 +119,12 @@ app.post('/signIn', (req, res) => {
 
 app.post('/users/:email', (req, res) => {
     const {email} = req.params;
+    console.log(req.params);
     const deleteUser = users.find(user => user.email === email);
     const indexOfDeleteUser = users.indexOf(deleteUser);
+    console.log(indexOfDeleteUser);
 
-    if (indexOfDeleteUser) {
+    if (indexOfDeleteUser || indexOfDeleteUser === 0) {
         users.splice(indexOfDeleteUser, 1);
         res.redirect('/users')
     }
