@@ -95,11 +95,12 @@ app.post('/login', (req, res) => {
     const findUserWithSameEmail = users.find(user => user.email === req.body.email);
 
     if (findUserWithSameEmail) {
-        res.send('This email already exists!')
-    } else {
-        users.push(req.body);
-        res.redirect('/users');
+        return res.send('This email already exists!')
     }
+
+    users.push(req.body);
+    return res.redirect('/users');
+
 
 })
 
@@ -108,11 +109,11 @@ app.post('/signIn', (req, res) => {
     const indexOfFindedUser = users.indexOf(findUserForSignIn);
 
     if (findUserForSignIn) {
-        res.redirect(`/users/${indexOfFindedUser}`);
+        return res.redirect(`/users/${indexOfFindedUser}`);
 
-    } else {
-        res.send('No such user exists!')
     }
+
+    return res.send('No such user exists!');
 
 })
 
