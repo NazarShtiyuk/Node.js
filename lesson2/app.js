@@ -59,12 +59,15 @@ app.get('/users', ({query}, res) => {
     // console.log(req.query);
     if (Object.keys(query) !== 0) {
         let filteredUsers = users;
+
         if (city) {
             filteredUsers = filteredUsers.filter(user => user.city === city);
         }
+
         if (age) {
             filteredUsers = filteredUsers.filter(user => user.age === age);
         }
+
         return res.render('users', {users: filteredUsers});
     }
 
@@ -75,9 +78,11 @@ app.get('/users', ({query}, res) => {
 app.get('/users/:userId', (req, res) => {
     // console.log(req.params)
     for (let i = 0; i < users.length; i++) {
+
         if ((i + 1) === +req.params.userId) {
             res.render('user', {user: users[i + 1]});
         }
+
     }
 })
 
@@ -88,17 +93,20 @@ app.get('/signIn', (req, res) => {
 app.post('/login', (req, res) => {
     // console.log(req.body);
     const findUserWithSameEmail = users.find(user => user.email === req.body.email);
+
     if (findUserWithSameEmail) {
         res.send('This email already exists!')
     } else {
         users.push(req.body);
         res.redirect('/users');
     }
+
 })
 
 app.post('/signIn', (req, res) => {
     const findUserForSignIn = users.find(user => user.email === req.body.email && user.password === req.body.password);
     const indexOfFindedUser = users.indexOf(findUserForSignIn);
+
     if (findUserForSignIn) {
         res.redirect(`/users/${indexOfFindedUser}`);
 
@@ -112,10 +120,12 @@ app.post('/users/:email', (req, res) => {
     const {email} = req.params;
     const deleteUser = users.find(user => user.email === email);
     const indexOfDeleteUser = users.indexOf(deleteUser);
+
     if (indexOfDeleteUser) {
         users.splice(indexOfDeleteUser, 1);
         res.redirect('/users')
     }
+
 })
 
 app.use((req, res) => {
